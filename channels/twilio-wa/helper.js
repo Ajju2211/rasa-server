@@ -35,3 +35,13 @@ module.exports.sendText = (req, res, message, rasa, parser) => {
   
   
 };
+
+
+module.exports.sendCurrentLocation = (req, res, location, rasa, parser) => {
+  // save current location inside the metadata of rasa
+  const twiml = new MessagingResponse();
+  twiml.message(`We have received your location lat: ${location.lat} ,lon: ${location.lon}`);
+    
+  res.writeHead(200, { "Content-Type": "text/xml" });
+  res.end(twiml.toString());
+};
