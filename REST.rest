@@ -12,8 +12,8 @@ POST http://localhost:5005/webhooks/custom_rest/webhook HTTP/1.1
 Content-Type: application/json
 
 {
-    "sender":"testmeta0129",
-    "message":"hahahaha@@@@@@@@@@@@---------------------aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+    "sender":"9989921",
+    "message":"order product",
     "metadata": {"metadata":"1212113131131sdsds"}
     
 }
