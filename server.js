@@ -8,7 +8,10 @@ process.on('uncaughtException', (err) => {
 });
 
 // dotenv.config({ path: './config.env' });
-dotenv.config();
+if(process.env.NODE_ENV!="production"){
+	dotenv.config();
+}
+
 const app = require('./app');
 const PORT = process.env.PORT || 3000;
 
