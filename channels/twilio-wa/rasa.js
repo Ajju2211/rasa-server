@@ -5,7 +5,7 @@ module.exports.sendMessage = async (senderId, message, metadata, platform) => {
       "Content-Type": "application/json",
     }
   };
-  const url = process.env.RASA_ENDPOINT+"webhooks/rest/webhook";
+  const url = process.env.RASA_ENDPOINT+"webhooks/custom_rest/webhook";
   metadata.platform = "whatsapp";
   const data = {
       "sender": senderId,
@@ -14,5 +14,8 @@ module.exports.sendMessage = async (senderId, message, metadata, platform) => {
   };
   const resp = await axios.post(url, data, config);
   const bot_res = await resp.data;
+  
   return bot_res;
 };
+
+

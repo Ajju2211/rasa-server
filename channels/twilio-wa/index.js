@@ -1,5 +1,5 @@
 
-module.exports.handleIncomingMessage = (req, res, rasa, helper, parser) => {
+module.exports.handleIncomingMessage = async (req, res, rasa, helper, parser) => {
   const body = req.body;
   let warning_messages =
     "I can understand only text and support image and current location on Twilio-whatsapp!";
@@ -14,14 +14,16 @@ module.exports.handleIncomingMessage = (req, res, rasa, helper, parser) => {
       return helper.sendCurrentLocation(req, res, location, rasa, parser);
     }
     // If user sends Live Location, which is unsupported
-    if (body.Body.length < 1) {
+    if (body.Body.trim().length < 1) {
       return helper.sendUnsupportedWarning(req, res, warning_messages);
     }
-    if (body.Body.length > 1) {
-      return helper.sendText(req, res, body.Body, rasa, parser);
+    if (body.Body.trim().length >= 1) {
+      await helper.sendText(req, res, body.Body, rasa, parser);
+      return;
     }
     // If any other unknown
     else {
+      console.log("unsupported request: "+JSON.stringify(body));
       return helper.sendUnsupportedWarning(req, res, warning_messages);
     }
   }
