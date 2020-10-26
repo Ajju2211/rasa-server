@@ -8,6 +8,7 @@ const cookieParser = require('cookie-parser');
 // twilio whatsapp channel route
 const tw_waRouter = require('./routes/tw-waRouter');
 
+const media_cache = require("./routes/media-cache");
 const app = express();
 
 //Middleware
@@ -25,6 +26,8 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 app.use('/channels/tw-wa', tw_waRouter);
+
+app.use('/media/cache', media_cache);
 
 //Handling unexpected routes
 app.all('*', (req, res, next) => {
